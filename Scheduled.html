@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/032e3ae94f.js" crossorigin="anonymous">
+    <title>2-DO List</title>
+    <link rel="icon" type="image/jpg" href="Icon Image.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .task-form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 70%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+
+        h2 {
+            color: #3498db;
+            background-color: #ecf0f1;
+            /* Background color for the h2 element */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            background-color: white;
+            /* Background color for input elements */
+            padding: 10px;
+            border-radius: 30px;
+            /* margin-top: 10px; */
+            position: absolute;
+            top: 93%;
+            left: 15%;
+            width: 57%;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-container {
+            background-color: white;
+            /* Background color for day selection */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            /* margin-top: 10px; */
+            position: absolute;
+            width: 25%;
+            height: 20%;
+            left: 73.5%;
+            border-radius: 30px;
+            top: 1.5%;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-checkbox {
+            margin: px;
+        }
+
+        hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .task-list {
+            width: 57%;
+            /* Change the width as needed */
+            height: 85.5%;
+            /* Adjust the height as needed */
+            position: absolute;
+            top: 0%;
+            /* Change the top position as needed */
+            left: 15%;
+            /* Change the left position as needed */
+            background-color: white;
+            border-radius: 30px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow-y: scroll;
+            list-style: none;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .task {
+            background-color: #fff;
+            margin: 28px 0;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #taskName {
+            width: 90%;
+            height: 38px;
+            margin-right: 4px;
+            /* padding-right: 10px; */
+            border-radius: 30px;
+            border: 1px solid black;
+            padding-left: 10px;
+        }
+
+        #dueTime {
+            height: 40px;
+            width: 90px;
+            margin-left: 4px;
+            border-radius: 30px;
+            border: 1px solid black;
+        }
+
+
+        .label {
+            /* display: flex; */
+            /* display: inline-block; */
+            font-size: 20px;
+            margin-right: 40px;
+
+        }
+
+        .label-fri {
+            /* display: flex; */
+            /* display: inline-block; */
+            font-size: 20px;
+            margin-right: 59px;
+            margin-left: -11px;
+        }
+
+        .label-sat {
+            /* display: flex; */
+            /* display: inline-block; */
+            font-size: 20px;
+            margin-right: 49px;
+        }
+
+
+
+        /* Side bar */
+        button {
+            border: none;
+            outline: none;
+            padding: 16px 50px;
+            background: #ff5945;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0px;
+            margin-left: 10px;
+        }
+
+        .home-button {
+            /* background-color: blue; */
+            /* border-radius: 50px; */
+            position: absolute;
+            top: 10%;
+            width: 92%;
+            border: none;
+            outline: none;
+            padding: 16px 50px;
+            background: white;
+            color: #ff5945;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0px;
+            margin-left: 10px;
+            border: 1px solid white;
+            top: 13%;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+            /* background-color: blue; */
+            /* border-radius: 50px; */
+            border: 1px solid white;
+            background-color: #ff5945;
+            color: white;
+        }
+
+        .dark-mode .home-button {
+            color: white;
+            background: #161616;
+            border: none;
+            box-shadow: 1px 1px 6px 1px rgba(173, 172, 172, 0.464);
+        }
+
+        .scheduled-button {
+            /* background-color: blue; */
+            /* border-radius: 50px; */
+            position: absolute;
+            top: 20%;
+            border: none;
+            outline: none;
+            padding: 16px 50px;
+            background: white;
+            color: #ff5945;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0px;
+            margin-left: 10px;
+            border: 1px solid white;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .scheduled-button:hover {
+            /* background-color: blue; */
+            /* border-radius: 50px; */
+            border: 1px solid white;
+            background-color: #ff5945;
+            color: white;
+        }
+
+        .dark-mode .scheduled-button {
+            color: white;
+            background: #161616;
+            border: none;
+            box-shadow: 1px 1px 6px 1px rgba(173, 172, 172, 0.464);
+        }
+
+        .dark-mode .scheduled-button:hover {
+            color: white;
+            background: #ff5945;
+        }
+
+        .dark-mode .home-button:hover {
+            color: white;
+            background: #ff5945;
+        }
+
+        .sidebar {
+            position: absolute;
+            background-color: white;
+            width: 250px;
+            height: 96.05%;
+            padding-top: 30px;
+            padding-bottom: 10px;
+            left: 0%;
+            top: 0%;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .dark {
+            position: absolute;
+            border-radius: 50px;
+            bottom: 2%;
+            left: 5%;
+        }
+
+        .row {
+            position: absolute;
+            width: 25%;
+            top: 24%;
+            left: 73.5%;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            height: 73%;
+            box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        #notes-input {
+            border-radius: 30px;
+            padding: 10px;
+        }
+
+        #notes-heading {
+            display: flex;
+            justify-content: center;
+        }
+
+        #add-task-button {
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+        }
+
+        #task-heading {
+            position: absolute;
+            left: 47%;
+            top: -1%;
+        }
+
+        /* Light Theme (default) */
+        body {
+            background-color: #f7f7f7;
+            color: #000;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #161616;
+            color: #fff;
+        }
+
+        .dark-mode .sidebar {
+            background-color: #1C1C1C;
+            color: #fff;
+
+        }
+
+        .dark-mode .row {
+            background-color: #1C1C1C;
+            color: #fff;
+            border: none;
+
+        }
+
+        .dark-mode .day-container {
+            color: #fff;
+            background-color: #1C1C1C;
+            border: none;
+        }
+
+        .dark-mode .task-list {
+            color: #fff;
+            background-color: #1C1C1C;
+            border: none;
+
+        }
+
+        .dark-mode .input-container {
+            color: #fff;
+            background-color: #1C1C1C;
+            border: none;
+
+        }
+
+        .dark-mode .task {
+            color: #fff;
+            background-color: #121212;
+            border: none;
+
+        }
+
+        .remove-button {
+            position: sticky;
+            left: 90%;
+            border-radius: 30px;
+            display: inline;
+        }
+
+        .dark-mode .dark {
+            background: #161616;
+            color: white;
+        }
+    </style>
+</head>
+
+<body id="pageBody">
+    <div class="row">
+        <h3 id="notes-heading">Add Notes</h3>
+        <textarea id="notes-input" rows="43" cols="60" placeholder="Enter your notes here"></textarea>
+    </div>
+    <div class="sidebar">
+        <h1 style="display: flex; justify-content: center; align-items: center; color: #ff5945; font-weight: 999;">
+            Tasky<i class="fa-solid fa-font-awesome" style="margin-left: 10px;"></i></h1>
+        <button id="dark-mode-toggle" class="dark" onclick="toggleTheme()">Change Theme</button>
+        <a href="index.html"><button class="home-button"><i class="fas fa-home"></i> Home</button></a>
+        <a href="Scheduled.html"><button class="scheduled-button"><i class="fas fa-calendar"></i> Scheduled
+                Task</button></a>
+    </div>
+    <div class="input-container">
+        <input type="text" id="taskName" placeholder="Task Name">
+        <input type="time" id="dueTime">
+        <button onclick="scaddTask()" id="add-task-button">Add Task</button>
+    </div>
+    <div class="day-container">
+        <h3>Select Days</h3>
+
+        <label class="label"><input type="checkbox" class="day-checkbox" value="Everyday"> Everyday</label>
+        <hr>
+        <label class="label"><input type="checkbox" class="day-checkbox" value="Every Monday"> Monday</label>
+        <label class="label"><input type="checkbox" class="day-checkbox" value="Every Tuesday"> Tuesday</label>
+        <label class="label"><input type="checkbox" class="day-checkbox" value="Every Wednesday"> Wednesday</label>
+        <label class="label"><input type="checkbox" class="day-checkbox" value="Every Thursday"> Thursday</label>
+        <label class="label-fri"><input type="checkbox" class="day-checkbox" value="Every Friday"> Friday</label>
+        <label class="label-sat"><input type="checkbox" class="day-checkbox" value="Every Saturday"> Saturday</label>
+        <label class="label"><input type="checkbox" class="day-checkbox" value="Every Sunday"> Sunday</label>
+    </div>
+    <!-- <div class="header-container">
+            <h2>Add a Repetitive Task</h2>
+        </div> -->
+
+    <ul id="taskList" class="task-list">
+        <h1 id="task-heading">
+            Tasks
+        </h1>
+    </ul>
+
+    <script>
+        // Add event listener to toggle the day-container
+        document.querySelector(".day-container h3").addEventListener("click", function () {
+            const dayCheckboxes = document.querySelectorAll(".day-checkbox");
+            dayCheckboxes.forEach(checkbox => {
+                checkbox.classList.toggle("show");
+            });
+        });
+
+        // Function to add a task
+        // Function to add a task
+        function scaddTask() {
+            const taskName = document.getElementById("taskName").value;
+            const dueTime = document.getElementById("dueTime").value;
+            const dayCheckboxes = document.querySelectorAll(".day-checkbox");
+            const selectedDays = [];
+
+            // Gather selected days from checkboxes
+            dayCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedDays.push(checkbox.value);
+                }
+            });
+
+            if (taskName && dueTime && (selectedDays.length > 0 || selectedDays.includes("Everyday"))) {
+                const taskList = document.getElementById("taskList");
+                const li = document.createElement("li");
+                li.className = "task";
+
+                // Create a remove button and add a click event listener
+                const removeButton = document.createElement("button");
+                removeButton.className = "remove-button";
+                removeButton.innerHTML = '<i class="fa-solid fa-x"></i> '; // Use the "trash-alt" icon
+                removeButton.addEventListener("click", function () {
+                    taskList.removeChild(li); // Remove the task when the button is clicked
+                });
+
+                li.innerHTML = `<strong>${taskName}</strong> - Due at ${dueTime} (${selectedDays.join(', ')}) `;
+                li.appendChild(removeButton); // Add the remove button to the task
+                taskList.appendChild(li);
+
+                // Clear input fields
+                document.getElementById("taskName").value = "";
+                document.getElementById("dueTime").value = "";
+
+                // Clear selected checkboxes
+                dayCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+
+                // alert("Task added successfully!");
+                const audio = new Audio('add.mp3'); // Replace with the actual path to your audio file
+                audio.play();
+            } else {
+                alert("Please fill in all fields and select at least one day or 'Everyday'.");
+            }
+        }
+        function toggleTheme() {
+            const body = document.getElementById("pageBody");
+            body.classList.toggle("dark-mode");
+        }
+
+    </script>
+    <script src="https://kit.fontawesome.com/032e3ae94f.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

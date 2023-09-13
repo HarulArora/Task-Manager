@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Style.css">
+        <link rel="stylesheet" href="https://kit.fontawesome.com/032e3ae94f.js" crossorigin="anonymous">
+        <title>TASKY</title>
+        <link rel="icon" type="image/jpg" href="/Icon Image.jpg">
+    </head>
+    <body>
+        <div id="preloader">
+            <img src="snail.gif" alt="Loading...">
+        </div>
+    
+        <div class="sidebar">
+            <h1 style="display: flex; justify-content: center; align-items: center; color: #ff5945; font-weight: 999;">Tasky<i class="fa-solid fa-font-awesome" style="margin-left: 10px;"></i></h1>
+            
+            <button id="dark-mode-toggle" class="dark">Change Theme</button>
+            <a href="index.html"><button class="home-button"><i class="fas fa-home"></i> Home</button></a>
+            <a href="Scheduled.html"><button class="scheduled-button"><i class="fas fa-calendar"></i> Scheduled Task</button></a>
+        </div>
+        <div class="container">
+            <!-- <div class="bg">
+                <div class="bg_text">HOME</div>
+            </div> -->
+             <div class="todo-app">
+                <!-- <h2 >2-DO List <i id="logo" class="fa-solid fa-circle-check" style="color:#ff5945;"></i></h2> -->
+                
+                <div class="row">
+                    <input type="text" id="input-box" placeholder="Add your Task" onkeydown="handleKeyDown(event)">
+                    <input type="date" class="due-date" id="due-date">
+                    <button onclick="addTask()" class="add"><i class="fas fa-plus"></i></button>
+                    <button onclick="startSpeechRecognition()" id="Voice" class="voice"><i class="fas fa-microphone"></i></button>
+                </div>
+                
+                
+            </div>
+            <div class="search-box">
+                <input type="text" class="search" id="search-box" placeholder="Search tasks" oninput="searchTasks()">
+                <i class="fas fa-search search-icon" id="search-icon"></i>
+            </div>
+            <div class="today-container">
+                <h2 class="today-text"><i class="fas fa-calendar-day" id="today-logo"></i> TODAY</h2>
+                <ul id="list-container">
+                
+                </ul>
+            </div>
+            <div class="tomorrow-container">
+                <h2 class="tomorrow-text"><i class="fas fa-calendar-alt" id="tomorrow-logo"></i> TOMORROW</h2>
+                <ul id="list-container">
+                    
+                </ul>
+            </div>
+            <div class="completed-container">
+                <span class="reward-section">
+                    <span class="reward-counter" id="reward-counter">0</span>
+                    <span class="reward-icon"><i class="fa-solid fa-fire"></i></span>
+                </span>
+                <h2 class="completed-text"><i class="fas fa-check-circle" id="completed-logo"></i> Completed</h2>
+                <ul id="list-container">
+                    
+                </ul>
+            </div>
+            <div class="other-container">
+                <h2 class="other-text"><i class="fas fa-calendar" id="upcoming-logo" ></i> UPCOMING</h2>
+                <ul id="list-container">
+
+                </ul>
+                
+            </div> 
+        </div>
+        <script>
+            window.addEventListener('load', function () {
+                // Simulate a slow loading experience by delaying the preloader hiding
+                var preloader = document.getElementById('preloader');
+                
+                // Delay for 5 seconds (5000 milliseconds) before hiding the preloader
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 2800);
+            });
+        </script>
+        <script src="https://kit.fontawesome.com/032e3ae94f.js" crossorigin="anonymous"></script>
+        <script src="Script.js"></script>
+    </body>
+</html>

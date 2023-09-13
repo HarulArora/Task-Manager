@@ -1,0 +1,605 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, color 0.3s ease-in-out;
+    /* z-index: -10; */
+    overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+.container{
+    width:100%;
+    min-height: 100vh;
+    background: #f7f7f7;
+    padding: 10px;
+    transition: background-color 0.2s ease-in-out;
+    position: absolute;
+    z-index: -11;
+}
+
+
+.todo-app {
+    width: 57%; /* Change the width as needed */
+    height: auto; /* Adjust the height as needed */
+    position: absolute;
+    top: 91%; /* Change the top position as needed */
+    left: 15%; /* Change the left position as needed */
+    background-color: white;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ededed;
+    border-radius: 30px;
+    padding-left: 20px;
+    /* margin-bottom: 2px; */
+    height: 60px;
+    padding-right: 10px;
+    /* border: 1px solid black; */
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+.due-date{
+    border: 1px solid #ccc;
+    max-width:140px;
+    border-radius: 50px;
+}
+input{
+    flex:1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 16px;
+}
+button{
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: #1C1C1C;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin-left: 10px;
+    
+}
+ul li{
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    color: rgb(2, 109, 15);
+    font-weight: 10px;
+    word-wrap: break-word;
+    padding-right: 50px;
+}
+ul li::before{
+    content: '';
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-image: url(Green\ Circle\ bg\ removed.png);
+    background-size: cover;
+    background-position: center;
+    top: 9px;
+    left: 8px;
+    background-color: transparent;
+}
+
+ul li.checked{
+    color: rgb(101, 103, 101);
+    text-decoration: line-through;
+}
+ul li.checked::before{
+    background-image: url(Red\ Checkmark.png);
+}
+
+
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li span:hover{
+    background: #ff5945;
+    scale: 1.2;
+    color: white;
+}
+
+
+
+
+.add, .voice {
+    /* background: transparent; */
+    background: #ff5945;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.add:hover, .voice:hover {
+    /* background-color: #f0f0f0; */
+    transform: scale(1.1);
+}
+
+
+.add{
+    margin-right: -5px;
+
+}
+
+/* Add these styles at the end of your existing CSS */
+
+/* Dark mode styles */
+.dark-mode {
+    background: #161616;
+    color: #000000;
+}
+
+
+
+/* Styles for specific elements in dark mode */
+.dark-mode .container {
+    background: #161616;
+    position: absolute;
+}
+
+.dark-mode .todo-app{
+    background: #1C1C1C;
+}
+/* Add similar rules for other elements as needed */
+
+.dark-mode .todo-app h2{
+    color: white;
+}
+.dark-mode .row{
+    background: #A0A0A0;
+}
+/* .dark-mode ul li{
+    color: white;
+} */
+
+.dark-mode .dark{
+    background: #161616;
+    color: white;
+}
+
+.dark-mode .search-box{
+    border: 1px solid #ccc;
+    
+}
+.dark-mode .search{
+    color: white;
+}
+
+.dark-mode .add{
+    background: #ff5945;
+}
+.dark-mode .voice{
+    background: #ff5945;
+}
+
+.dark-mode .pen-icon:hover{
+    background-color: #edeef0;
+    color: #555;
+    scale: 1.2;
+}
+
+.dark-mode ul li span:hover{
+    color: #ffffff;
+    background-color: #ff5945;
+    scale: 1.2;
+    
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 3px solid #ffffff; */
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 5px;
+    width: 150px;
+    margin-top: 14px;
+    transition: width 0.7s cubic-bezier(0.4, 1.33, 0.93, 1.07);
+    margin-bottom: 5px;
+    padding-right: 10px;
+    position: absolute;
+    top: 1%;
+    left: 73%;
+    z-index: 55;
+}
+
+.search-box:focus-within {
+    width: 25%;
+}
+
+.search-icon {
+    color: #000000;
+    cursor: pointer;
+    position: relative;
+    margin-left: -120px;
+}
+.due-date:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.07);
+}
+
+/* Rewards */
+
+.reward-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 20px;
+    padding: 10px 5px 10px 5px;
+    /* margin-bottom: 10px; */
+    margin-left: 88%;
+    margin-top: -50px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    width: 80px;
+    position: absolute;
+    top: 22%;
+    right: 4%;
+}
+
+.reward-icon {
+    font-size: 24px;
+    color: #ff5945;
+    margin-left: 10px;
+    transition: ease-in-out 0.2s;
+}
+
+.reward-icon:hover{
+    transform: scale(1.2);
+}
+.reward-counter {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Dark mode styles for the reward section */
+.dark-mode .reward-section {
+    background: #161616
+}
+
+.dark-mode .reward-counter {
+    color: #fff;
+}
+
+.dark-mode ul li{
+    color: white;
+}
+
+/* .bg{ */
+    /* position: absolute; */
+    /* z-index: -3; */
+    /* height: 100vh; */
+    /* width: 100vw; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* background-color: red; */
+/* } */
+/* .bg_text{ */
+    /* cursor: default; */
+    /* margin: 0%; */
+    /* padding: 0%; */
+    /* background: linear-gradient(143deg, black,rgb(70, 70, 70), black); */
+    /* background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    /* font-weight: 900; */
+    /* font-size: 800px; */
+/* } */
+
+
+.sidebar{
+    position: absolute;
+    background-color: white;
+    width: 250px;
+    min-height: 100vh;
+    padding-top:30px;
+    padding-bottom: 10px;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+.dark{
+    position: absolute;
+    border-radius: 50px;
+    bottom: 2%;
+    left: 5%;
+    background-color: #ff5945;
+}
+
+.today-container {
+    width: 57%; /* Change the width as needed */
+    height: 87%; /* Adjust the height as needed */
+    position: absolute;
+    top: 2%; /* Change the top position as needed */
+    left: 15%; /* Change the left position as needed */
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    padding-top: 25px;
+    overflow-y: scroll;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+.today-container::-webkit-scrollbar{
+    display: none;
+}
+.today-text{
+    position: absolute;
+    left:45%;
+    /* margin-top: px; */
+}
+.tomorrow-container {
+    width: 25%; /* Change the width as needed */
+    height: 28%;
+    position: absolute;
+    top: 39.5%; /* Change the top position as needed */
+    left: 73%; /* Change the left position as needed */
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    padding-top: 25px;
+    overflow-y: scroll;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+.tomorrow-container::-webkit-scrollbar{
+    display: none;
+}
+.tomorrow-text{
+    position: absolute;
+    left:33%;
+    /* margin-top: px; */
+}
+#list-container{
+    margin-top: 40px;
+}
+.completed-container {
+    width: 25%; /* Change the width as needed */
+    height: 28%; /* Adjust the height as needed */
+    position: absolute;
+    top: 9%; /* Change the top position as needed */
+    left: 73%; /* Change the left position as needed */
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    padding-top: 25px;
+    overflow-y: scroll;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+.completed-container::-webkit-scrollbar{
+    display: none;
+}
+.completed-text{
+    position: absolute;
+    left:35%;
+    /* margin-top: px; */
+}
+
+
+.other-container {
+    width: 25%; /* Change the width as needed */
+    height: 28%; /* Adjust the height as needed */
+    position: absolute;
+    top: 70%; /* Change the top position as needed */
+    left: 73%; /* Change the left position as needed */
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    padding-top: 25px;
+    overflow-y: scroll;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+}
+
+.other-container::-webkit-scrollbar{
+    display: none;
+}
+.other-text {
+    position: absolute;
+    left: 33%;
+}
+
+
+.dark-mode .today-container{
+    color: white;
+    background-color: #1C1C1C;
+}
+.dark-mode .tomorrow-container{
+    color: white;
+    background-color: #1C1C1C;
+}
+.dark-mode .completed-container{
+    color: white;
+    background-color: #1C1C1C;
+}
+.dark-mode .other-container{
+    color: white;
+    background-color: #1C1C1C;
+}
+
+.dark-mode .sidebar{
+    color: white;
+    background-color: #1C1C1C;
+}
+
+
+
+/* .flip {
+    animation: flipAnimation 0.5s ease-in-out;
+}
+
+@keyframes flipAnimation {
+    0% {
+        transform: perspective(800px) rotateX(0deg);
+    }
+    100% {
+        transform: perspective(800px) rotateX(360deg);
+    }
+} */
+
+
+/* Scheduled.html */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(222, 218, 218);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure it's above all other content */
+}
+
+#preloader img {
+    width: 500px; /* Adjust the size of the loading image as needed */
+    height: 500px;
+    animation: spin 2s linear infinite; /* Add a spinning animation to the image */
+}
+
+/* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} */
+
+/* Add any other styles you want for the preloader */
+
+.edit{
+    position: absolute;
+    right: 10%;
+}
+
+.home-button {
+    /* background-color: blue; */
+    /* border-radius: 50px; */
+    position: absolute;
+    top: 10%;
+    width: 92%;
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: white;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+    color: #ff5945;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin-left: 10px;
+    /* border: 1px solid white; */
+    top: 13%;
+}
+
+.dark-mode .home-button{
+    color: white;
+    background: #161616;
+    border: none;
+    box-shadow: 1px 1px 6px 1px rgba(173, 172, 172, 0.464);
+}
+.home-button:hover {
+    /* background-color: blue; */
+    /* border-radius: 50px; */
+    border: 1px solid white;
+    background-color: #ff5945;
+    color: white;
+}
+
+.scheduled-button {
+    /* background-color: blue; */
+    /* border-radius: 50px; */
+    position: absolute;
+    top: 20%;
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: white;
+    box-shadow: 8px 8px 20px 3px rgba(0, 0, 0, 0.1);
+    color: #ff5945;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin-left: 10px;
+    border: 1px solid white;
+    font-weight: 545;
+    width:14.4rem ;
+} 
+
+.dark-mode .scheduled-button{
+    color: white;
+    background: #161616;
+    border: none;
+    box-shadow: 1px 1px 6px 1px rgba(173, 172, 172, 0.464);
+}
+
+.scheduled-button:hover {
+    /* background-color: blue; */
+    /* border-radius: 50px; */
+    border: 1px solid white;
+    background-color: #ff5945;
+    color: white;
+    
+}
+
+
+#upcoming-logo{
+    color: #ff5945;
+}
+#upcoming-logo:hover{
+    scale: 1.2;
+}
+
+#tomorrow-logo{
+    color: #ff5945;
+}
+#tomorrow-logo:hover{
+    scale: 1.2;
+}
+#completed-logo{
+    color: #ff5945;
+}
+#completed-logo:hover{
+    scale: 1.2;
+}
+#today-logo{
+    color: #ff5945;
+}
+#today-logo:hover{
+    scale: 1.2;
+}
+
+.dark-mode #search-icon{
+    color: white;
+}
